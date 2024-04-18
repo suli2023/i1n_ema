@@ -1,17 +1,30 @@
 const doc = {
     empBody: document.querySelector("#empBody"),
-    addButton: document.querySelector("#addButton")
+    addButton: document.querySelector("#addButton"),
+    nameInput: document.querySelector("#name"),
+    cityInput: document.querySelector("#city"),
+    salaryInput: document.querySelector("#salary")
 }
 
 const state = {
-    url: 'http://localhost:8000/employees'
+    url: 'http://localhost:8000/employees',
+    name: 'névtelen',
+    city: 'ismeretlen',
+    salary: 300
 }
 
 
 doc.addButton.addEventListener('click', () => {
     console.log('műkődik')
+    getDataFromForm()
     createEmployee()
 })
+
+function getDataFromForm() {
+    state.name = doc.nameInput.value
+    state.city = doc.cityInput.value
+    state.salary = doc.salaryInput.value
+}
 
 function createEmployee() {
     fetch(state.url, {
@@ -20,9 +33,9 @@ function createEmployee() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify( {
-            name: "Valaki",
-            city: "Valahol",
-            salary: 300
+            name: state.name,
+            city: state.city,
+            salary: state.salary
         })
     })
 }
