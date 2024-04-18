@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8">
+    <title>Dolgozók</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">        
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dolgozók</h1>
+
+      <div class="addform">
+        <div class="input">
+          <label for="name" class="form-label">
+            Név
+          </label>
+          <input type="text" id="name"
+          class="form-control">
+        </div>
+        <div class="input">
+          <label for="city" class="form-label">
+            Település
+          </label>
+          <input type="text" id="city"
+          class="form-control">
+        </div>
+        <div class="input">
+          <label for="salary" class="form-label">
+            Fizetés
+          </label>
+          <input type="text" id="salary"
+          class="form-control">
+        </div>
+        <div>
+          <button class="btn btn-primary mt-2"
+          id="addButton">Mentés</button>
+        </div>
+      </div>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Név</th>
+            <th>Település</th>
+            <th>Fizetés</th>
+          </tr>
+        </thead>
+        <tbody id="empBody"></tbody>
+      </table>
+
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
+

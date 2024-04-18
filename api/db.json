@@ -1,0 +1,28 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Lant Géza",
+      "city": "Szeged",
+      "salary": 342
+    },
+    {
+      "id": 2,
+      "name": "Erős István",
+      "city": "Szolnok",
+      "salary": 327
+    },
+    {
+      "name": "Valaki",
+      "city": "Valahol",
+      "salary": 300,
+      "id": 3
+    },
+    {
+      "name": "Valaki",
+      "city": "Valahol",
+      "salary": 300,
+      "id": 4
+    }
+  ]
+}
