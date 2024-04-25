@@ -2,7 +2,8 @@
   "server": [
     "src",
     "node_modules/bootstrap/dist/css",
-    "node_modules/bootstrap/dist/js"
+    "node_modules/bootstrap/dist/js",
+    "node_modules/bootstrap-icons/font"
   ],
   "port": 3000,
   "watch": true

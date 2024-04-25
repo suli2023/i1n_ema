@@ -1,6 +1,7 @@
 const doc = {
     empBody: document.querySelector("#empBody"),
     addButton: document.querySelector("#addButton"),
+    idInput: document.querySelector("#id"),
     nameInput: document.querySelector("#name"),
     cityInput: document.querySelector("#city"),
     salaryInput: document.querySelector("#salary")
@@ -10,15 +11,22 @@ const state = {
     url: 'http://localhost:8000/employees',
     name: 'névtelen',
     city: 'ismeretlen',
-    salary: 300
+    salary: 300,
+    add: true
 }
 
 
 doc.addButton.addEventListener('click', () => {
-    console.log('műkődik')
+    console.log('Hozzáadás...')    
     getDataFromForm()
     createEmployee()
+    deleteModalContent()    
+    getEmployees()
 })
+
+function startAdding() {
+    deleteModalContent();
+}
 
 function getDataFromForm() {
     state.name = doc.nameInput.value
@@ -45,6 +53,7 @@ function getEmployees() {
     .then( response => response.json())
     .then(result => {
         // console.log(result)
+        clearTableContent()
         renderEmployees(result)
     })
 }
@@ -61,18 +70,59 @@ function renderEmployees(employeeList) {
             <td>${emp.salary}</td>
             <td>
                 <button 
-                    class="btn btn-primary">
-                    Szerkesztés
+                    class="btn btn-primary"
+                    data-id="${emp.id}"
+                    data-name="${emp.name}"
+                    data-city="${emp.city}"
+                    data-salary="${emp.salary}"
+                    data-bs-toggle="modal" data-bs-target="#operatorModal"
+                    onclick="startEdit(this)">
+                    <i class="bi bi-pencil"></i>
                 </button>
                 <button
-                    class="btn btn-danger">
-                    Törlés
+                    class="btn btn-danger"
+                    onclick="startDelete(${emp.id})">
+                    
+                    <i class="bi bi-trash"></i>
                 </button>
             </td>
         `
         doc.empBody.appendChild(row)
     });
     
+}
+
+function deleteModalContent() {
+    doc.idInput.value = ''
+    doc.nameInput.value = ''
+    doc.cityInput.value = ''
+    doc.salaryInput.value = ''
+}
+
+function clearTableContent() {
+    doc.empBody.textContent = ''
+}
+
+function startDelete(id) {
+    console.log('törlendő:', id)
+    deleteEmployee(id)
+    getEmployees()
+}
+
+function deleteEmployee(id) {
+    let newUrl = state.url + '/'+id
+    fetch(newUrl, {
+        method: 'delete'
+    })
+}
+
+function startEdit(source) {
+    console.log("Szerkesztés ...")    
+    doc.idInput.value = source.dataset.id
+    doc.nameInput.value = source.dataset.name
+    doc.cityInput.value = source.dataset.city
+    doc.salaryInput.value = source.dataset.salary
+
 }
 
 getEmployees()

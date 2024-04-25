@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Dolgozók</title>
     <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">        
   </head>
   <body>
@@ -13,12 +14,15 @@
 
 
             <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Hozzáadás
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#operatorModal"
+      onclick="startAdding()"
+      >
+        
+        <i class="bi bi-person-plus"></i>
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="operatorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -29,6 +33,13 @@
 
 
               <div class="addform">
+                <div class="input">
+                  <label for="id" class="form-label">
+                    Id
+                  </label>
+                  <input type="text" id="id" readonly
+                  class="form-control">
+                </div>
                 <div class="input">
                   <label for="name" class="form-label">
                     Név
@@ -50,10 +61,6 @@
                   <input type="text" id="salary"
                   class="form-control">
                 </div>
-                <div>
-                  <button class="btn btn-primary mt-2"
-                  id="addButton">Mentés</button>
-                </div>
               </div>
         
 
@@ -61,8 +68,9 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+              <button type="button" class="btn btn-primary"
+              id="addButton">Mentés</button>
             </div>
           </div>
         </div>
